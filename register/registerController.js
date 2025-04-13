@@ -44,7 +44,7 @@ export const registerController = (form) => {
       await createUser(name, email, password);
       const event = new CustomEvent("register-ok", {
         detail: {
-          message: 'Te has registrado correctamente',
+          message: 'Te has registrado correctamente. Se te redigirá a la página principal para que puedas iniciar sesión',
           type: 'success'
         }
       });

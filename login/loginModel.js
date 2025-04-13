@@ -12,7 +12,7 @@ export async function loginUser(email, password){
   });
 
   if (!response.ok) {
-    throw new Error("error iniciando sesión")
+    throw new Error("Error iniciando sesión. Revisa tus credenciales.")
   }
   
   const { accessToken } = await response.json();

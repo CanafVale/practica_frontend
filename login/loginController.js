@@ -11,22 +11,22 @@ export function loginController(loginForm) {
     
     const userEmail = userEmailElement.value;
     const password = passwordElement.value;
-    
 
-    // 2- validar el mail
     const emailRegExp = new RegExp(REGEXP.mail);
     if (!emailRegExp.test(userEmail)) {
-      alert('formato de mail incorrecto')
+      alert('El formato del email es incorrecto');
     } else {
-      handleLoginUser(userEmail, password)
+      handleLoginUser(userEmail, password);
     }
-
-  })
+  });
 
   async function handleLoginUser(userEmail, password) {
-    const token = await loginUser(userEmail, password);
-
-    localStorage.setItem("token", token)
+    try {
+      const token = await loginUser(userEmail, password);
+      localStorage.setItem("token", token);
+      window.location = "/"; // Redirige al inicio
+    } catch (error) {
+      alert(error.message);
+    }
   }
 }
-
