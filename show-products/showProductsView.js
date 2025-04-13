@@ -12,6 +12,11 @@ export const buildProduct = (product) => {
     productView += `<p>Tags: ${product.tags.join(", ")}</p>`;
   }
 
+  if (product.image) {
+    const imageUrl = new URL(product.image, "http://localhost:8000").href;
+    productView += `<img class="product-image" src="${imageUrl}" alt="${product.name}" />`;
+  }
+
   return productView;
 };
 
