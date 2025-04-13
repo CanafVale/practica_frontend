@@ -8,12 +8,18 @@ export const createProductController = (form) => {
     const description = form.querySelector('#description').value;
     const price = parseFloat(form.querySelector('#price').value);
     const type = form.querySelector('#type').value;
+    const tagsString = form.querySelector('#tags').value;
+    const tags = tagsString
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length > 0); 
 
     const product = {
       name,
       description,
       price,
-      type
+      type,
+      tags
     };
 
     try {
