@@ -1,20 +1,18 @@
-export async function tweetDetailModel(tweetId) {
-
-  const response = await fetch(`http://localhost:8000/api/tweets/${tweetId}?_expand=user`);
+export async function getProductDetail(productId) {
+  const response = await fetch(`http://localhost:8000/api/products/${productId}?_expand=user`);
 
   if (!response.ok) {
-    throw new Error("Tweet no disponible")
+    throw new Error("Producto no disponible");
   }
 
-  const tweetDetail = await response.json();
-
-  return tweetDetail;
+  const productDetail = await response.json();
+  return productDetail;
 }
 
-export async function removeTweet(tweetId) {
-  const token = localStorage.getItem('token');
+export async function deleteProduct(productId) {
+  const token = localStorage.getItem("token");
 
-  const response = await fetch(`http://localhost:8000/api/tweets/${tweetId}`, {
+  const response = await fetch(`http://localhost:8000/api/products/${productId}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -23,25 +21,24 @@ export async function removeTweet(tweetId) {
   });
 
   if (!response.ok) {
-    throw new Error("Tweet no disponible")
+    throw new Error("No se ha podido eliminar el producto");
   }
 }
 
 export async function getLoggedInUserInfo() {
-  const token = localStorage.getItem('token');
- 
+  const token = localStorage.getItem("token");
+
   const response = await fetch(`http://localhost:8000/auth/me`, {
     headers: {
       "Content-type": "application/json",
       "Authorization": `Bearer ${token}`
     }
   });
+
   if (!response.ok) {
-    throw new Error("Usuario no existente");
+    throw new Error("Usuario no autenticado");
   }
 
   const user = await response.json();
-
   return user;
-
- }
+}

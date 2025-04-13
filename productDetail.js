@@ -1,19 +1,13 @@
-import { tweetDetailController } from "./tweet-detail/tweetDetailController.js";
+import { productDetailController } from "./product-detail/productDetailController.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  // fuera del controlador -  sacar id de la url
   const searchParams = new URLSearchParams(window.location.search);
-  const tweetId = searchParams.get("id");
+  const productId = searchParams.get("id");
 
-  // fuera del controlador - gestionar id inexistente
-  if (tweetId) {
-    const tweetContainer = document.querySelector(".tweet-container")
-    // ejecutar un controlador
-    tweetDetailController(tweetContainer, tweetId)
+  if (productId) {
+    const productContainer = document.querySelector(".product-container");
+    productDetailController(productContainer, productId);
   } else {
-    window.location = '/'
+    window.location = '/';
   }
-
-
-})
+});

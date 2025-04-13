@@ -1,20 +1,23 @@
-export const buildTweetDetailView = (tweet) => {
-  const date = new Date(tweet.updatedAt)
-  let tweetView =  `
-        <p>${tweet.user.name} - ${date.toLocaleString()}</p>
-        <p>${tweet.content}</p>
-      `;
+export const buildProductDetailView = (product) => {
+  const date = new Date(product.updatedAt);
 
-  if (tweet.likes > 0) {
-    tweetView += `<p>${tweet.likes}</p>`;
+  let html = `
+    <h2>${product.name}</h2>
+    <p>${product.description}</p>
+    <p>Precio: ${product.price} €</p>
+    <p>Tipo: ${product.type === "buy" ? "Compra" : "Venta"}</p>
+    <p>Fecha: ${date.toLocaleString()}</p>
+  `;
+
+  if (product.tags?.length > 0) {
+    html += `<p>Tags: ${product.tags.join(", ")}</p>`;
   }
 
-  return tweetView
-}
+  return html;
+};
 
-export const buildRemoveTweetButton = () => {
+export const buildRemoveProductButton = () => {
   const removeButton = document.createElement("button");
-  removeButton.textContent = 'Borrar tweet';
-
+  removeButton.textContent = "Eliminar producto";
   return removeButton;
-}
+};
