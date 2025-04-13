@@ -1,7 +1,7 @@
 export const buildProduct = (product) => {
   const date = new Date(product.updatedAt)
   let productView =  `
-   <h3>${product.name}</h3>
+   
     <p>${product.description}</p>
     <p>Precio: ${product.price} €</p>
     <p>Tipo: ${product.type === "buy" ? "Compra" : "Venta"}</p>

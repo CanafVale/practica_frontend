@@ -21,17 +21,25 @@ export async function showProductsController(container) {
 }
 
 function drawProducts(products, container) {
-
   container.innerHTML = '';
 
   if (products.length === 0) {
-    container.innerHTML = buildNoProductsAdvice()
+    container.innerHTML = buildNoProductsAdvice();
+    return;
   }
 
   products.forEach((product) => {
-    const productHtml = document.createElement("a");
-    productHtml.setAttribute("href", `./product-detail.html?id=${product.id}`);
-    productHtml.innerHTML = buildProduct(product);
-    container.appendChild(productHtml);
+    const productElement = document.createElement("div");
+
+    const nameLink = document.createElement("a");
+    nameLink.setAttribute("href", `./product-detail.html?id=${product.id}`);
+    nameLink.innerHTML = `<h3>${product.name}</h3>`;
+
+    productElement.appendChild(nameLink);
+
+    const otherContent = buildProduct(product);
+    productElement.innerHTML += otherContent;
+
+    container.appendChild(productElement);
   });
 }
