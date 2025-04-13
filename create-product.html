@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear producto</title>
+  </head>
+  <body>
+    <h1>Crear producto</h1>
+
+    <form>
+      <label for="name">Nombre del producto</label>
+      <input type="text" id="name" name="name" required />
+      <br />
+
+      <label for="description">Descripción</label>
+      <textarea id="description" name="description" required></textarea>
+      <br />
+
+      <label for="price">Precio (€)</label>
+      <input type="number" id="price" name="price" required />
+      <br />
+
+      <label for="type">¿Quieres comprar o vender?</label>
+      <select id="type" name="type" required>
+        <option value="buy">Comprar</option>
+        <option value="sell">Vender</option>
+      </select>
+      <br />
+
+      <label for="image">Subir imagen (opcional)</label>
+      <input type="file" id="image" name="image" accept="image/*" />
+      <br />
+
+      <button type="submit">Crear producto</button>
+    </form>
+
+    <script type="module" src="./createProduct.js"></script>
+  </body>
+</html>
