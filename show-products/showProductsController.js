@@ -1,39 +1,37 @@
-import { getTweets } from "./showTweetsModel.js"
-import { buildTweet, buildNoTweetsAdvice } from './showTweetsView.js';
+import { getProducts } from "./showProductsModel.js"
+import { buildProduct, buildNoProductsAdvice } from './showProductsView.js';
 
-export async function showTweetsController(container) {
+export async function showProductsController(container) {
 
   try {
-    const event = new CustomEvent("load-tweets-started")
-    container.dispatchEvent(event)
-    const tweets = await getTweets();
-    drawTweets(tweets, container)
+    const event = new CustomEvent("load-products-started");
+    container.dispatchEvent(event);
+
+    const products = await getProducts();
+    drawProducts(products, container);
   } catch (error) {
-    // alert(error.message)
-    const event = new CustomEvent("load-tweets-error", {
+    const event = new CustomEvent("load-products-error", {
       detail: error.message
-    })
-    container.dispatchEvent(event)
+    });
+    container.dispatchEvent(event);
   } finally {
-    const event = new CustomEvent("load-tweets-finished")
-    container.dispatchEvent(event)
+    const event = new CustomEvent("load-products-finished");
+    container.dispatchEvent(event);
   }
-  
 }
 
-function drawTweets(tweets, container) {
+function drawProducts(products, container) {
 
   container.innerHTML = '';
 
-  if (tweets.length === 0) {
-    container.innerHTML = buildNoTweetsAdvice()
+  if (products.length === 0) {
+    container.innerHTML = buildNoProductsAdvice()
   }
 
-  tweets.forEach((tweet) => {
-    const tweetHtml = document.createElement("a");
-    tweetHtml.setAttribute("href", `./tweet-detail.html?id=${tweet.id}`)
-    tweetHtml.innerHTML = buildTweet(tweet)
-    
-    container.appendChild(tweetHtml)
-  }) 
+  products.forEach((product) => {
+    const productHtml = document.createElement("a");
+    productHtml.setAttribute("href", `./product-detail.html?id=${product.id}`);
+    productHtml.innerHTML = buildProduct(product);
+    container.appendChild(productHtml);
+  });
 }

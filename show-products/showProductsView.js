@@ -1,17 +1,21 @@
-export const buildTweet = (tweet) => {
-  const date = new Date(tweet.updatedAt)
-  let tweetView =  `
-        <p>${tweet.userId} - ${date.toLocaleString()}</p>
-        <p>${tweet.content}</p>
-      `;
+export const buildProduct = (product) => {
+  const date = new Date(product.updatedAt)
+  let productView =  `
+   <h3>${product.name}</h3>
+    <p>${product.description}</p>
+    <p>Precio: ${product.price} €</p>
+    <p>Tipo: ${product.type === "buy" ? "Compra" : "Venta"}</p>
+    <p>Fecha: ${date.toLocaleString()}</p>
+  `;
 
-  if (tweet.likes > 0) {
-    tweetView += `<p>${tweet.likes}</p>`;
+  if (product.tags && product.tags.length > 0) {
+    productView += `<p>Tags: ${product.tags.join(", ")}</p>`;
   }
 
-  return tweetView
-}
+  return productView;
+};
 
-export const buildNoTweetsAdvice = () => {
-  return '<h3>Lo siento, no hay tweets disponibles!</h3>'
+
+export const buildNoProductsAdvice = () => {
+  return '<h3>Lo siento, no hay productos disponibles!</h3>'
 }
