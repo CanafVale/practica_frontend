@@ -7,7 +7,7 @@ export const buildUnauthorizedSession = () => {
 
 export const buildAuthorizedSession = () => {
   return `
-    <a href="./create-tweet.html">Crear producto</a>
+    <a href="./create-product.html">Crear producto</a>
     <button class="logout">Cerrar sesión</button>
   `;
 }
