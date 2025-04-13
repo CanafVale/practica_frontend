@@ -12,7 +12,7 @@ export const createProduct = async (product) => {
   });
 
   if (!response.ok) {
-    const data = response.json();
+    const data = await response.json();
     throw new Error("No se ha podido crear el producto")
   }
 }
