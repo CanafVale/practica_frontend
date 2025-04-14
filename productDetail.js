@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const productId = searchParams.get("id");
 
   if (productId) {
-    const productContainer = document.querySelector(".product-container");
+    const productContainer = document.getElementById("product-detail");  // <== CAMBIADO
     productDetailController(productContainer, productId);
   } else {
     window.location = '/';
