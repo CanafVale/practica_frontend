@@ -1,4 +1,5 @@
 export const buildProduct = (product) => {
+  
   const date = new Date(product.updatedAt);
 
   const imageUrl = product.image
@@ -15,7 +16,8 @@ export const buildProduct = (product) => {
         <p><strong>Tipo:</strong> ${product.type === "buy" ? "Compra" : "Venta"}</p>
         <p><strong>Fecha:</strong> ${date.toLocaleString()}</p>
         ${product.tags?.length > 0 ? `<p><strong>Tags:</strong> ${product.tags.join(", ")}</p>` : ''}
-      </div>
+        <p><strong>Vendido por:</strong> ${product.user?.username || 'Desconocido'}</p>
+        </div>
     </div>
   `;
 };
