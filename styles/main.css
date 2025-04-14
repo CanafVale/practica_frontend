@@ -1,3 +1,44 @@
+/* Variables de estilo */
+:root {
+    --color-primary: #64DBC8;
+    --color-secondary: #3D9EF6;
+    --text-color: #333;
+    --background-color: #fff;
+    --font-family-base: 'Wallie', Helvetica, Arial, sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+    --button-text-color: #fff;
+  }
+  
+  /* Estilos globales - Mobile First */
+  body {
+    margin: 0;
+    padding: 1rem;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    background-color: var(--background-color);
+  }
+  
+  /* Botones al estilo Wallapop */
+  .button-wallapop {
+    background-color: var(--color-primary);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75em 1.5em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .button-wallapop:hover {
+    background-color: var(--color-secondary);
+  }
+  
+
+
 .product-image {
     max-width: 200px;
     margin-top: 10px;
