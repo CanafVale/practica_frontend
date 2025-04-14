@@ -3,11 +3,10 @@ import { notificationsController } from "./notifications/notificationsController
 import { sessionController } from "./session/sessionController.js";
 import { showProductsController } from "./show-products/showProductsController.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".products-container"); 
   const loader = document.querySelector(".loader");
   const notifications = document.querySelector(".notifications");
-  const session = document.querySelector(".session");
 
   const { show, hide } = loaderController(loader);
   const { showNotification } = notificationsController(notifications);
@@ -27,5 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   showProductsController(container);
+
+ 
+  const headerHtml = await fetch("header.html").then(res => res.text());
+  document.getElementById("header-container").innerHTML = headerHtml;
+
+ 
+  const session = document.querySelector(".session");
   sessionController(session);
 });
