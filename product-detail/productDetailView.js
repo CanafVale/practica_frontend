@@ -12,12 +12,15 @@ export const buildProductDetailView = (product) => {
     <p><strong>Tipo:</strong> ${product.type === "buy" ? "Compra" : "Venta"}</p>
     <p><strong>Fecha:</strong> ${date.toLocaleString()}</p>
     ${product.tags?.length > 0 ? `<p><strong>Tags:</strong> ${product.tags.join(", ")}</p>` : ''}
+
+    <button class="btn btn-outline-secondary mt-4" onclick="window.history.back()">Volver</button>
+    
   `;
 };
 
 export const buildRemoveProductButton = () => {
   const removeButton = document.createElement("button");
   removeButton.textContent = "Eliminar producto";
-  removeButton.classList.add("btn", "btn-danger", "mt-4"); // Bootstrap
+  removeButton.classList.add("btn", "btn-danger", "mt-4");
   return removeButton;
 };
