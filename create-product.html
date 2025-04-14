@@ -3,44 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/main.css" />
-
     <title>Crear producto</title>
+
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   </head>
-  <body>
-    <h1>Crear producto</h1>
 
-    <form>
-      <label for="name">Nombre del producto</label>
-      <input type="text" id="name" name="name" required />
-      <br />
+  <body class="bg-light">
+    <div id="header-container"></div>
 
-      <label for="description">Descripción</label>
-      <textarea id="description" name="description" required></textarea>
-      <br />
+    <main class="container d-flex justify-content-center align-items-start main-login-container">
+      <div class="card p-4 shadow-sm" style="min-width: 300px; max-width: 600px; width: 100%;">
+        <h2 class="text-center mb-4 form-title">Crear nuevo producto</h2>
 
-      <label for="price">Precio (€)</label>
-      <input type="number" id="price" name="price" required />
-      <br />
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre del producto</label>
+            <input type="text" id="name" name="name" class="form-control" required />
+          </div>
 
-      <label for="type">¿Quieres comprar o vender?</label>
-      <select id="type" name="type" required>
-        <option value="buy">Comprar</option>
-        <option value="sell">Vender</option>
-      </select>
-      <br />
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+          </div>
 
-      <label for="image">Subir imagen (opcional)</label>
-      <input type="file" id="image" name="image" accept="image/*" />
-      <br />
+          <div class="mb-3">
+            <label for="price" class="form-label">Precio (€)</label>
+            <input type="number" id="price" name="price" class="form-control" required />
+          </div>
 
-      <label for="tags">Tags (separados por comas)</label>
-      <input type="text" id="tags" name="tags" placeholder="ej: motor, casa, deporte" />
-      <br />
+          <div class="mb-3">
+            <label for="type" class="form-label">¿Quieres comprar o vender?</label>
+            <select id="type" name="type" class="form-select" required>
+              <option value="buy">Comprar</option>
+              <option value="sell">Vender</option>
+            </select>
+          </div>
 
-      <button type="submit">Crear producto</button>
-    </form>
+          <div class="mb-3">
+            <label for="image" class="form-label">Subir imagen (opcional)</label>
+            <input type="file" id="image" name="image" accept="image/*" class="form-control" />
+          </div>
+
+          <div class="mb-3">
+            <label for="tags" class="form-label">Tags (separados por comas)</label>
+            <input type="text" id="tags" name="tags" placeholder="ej: motor, casa, deporte" class="form-control" />
+          </div>
+
+          <button type="submit" class="button-wallapop w-100">Crear producto</button>
+        </form>
+      </div>
+    </main>
 
     <script type="module" src="./createProduct.js"></script>
+    <script>
+      fetch("header.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("header-container").innerHTML = data;
+        });
+    </script>
   </body>
-</ht
+</html>
