@@ -100,3 +100,8 @@
     min-height: 80vh;
     padding-top: 4rem;
   }
+
+  .form-title {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
