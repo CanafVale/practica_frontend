@@ -3,30 +3,29 @@ import { buildProduct, buildNoProductsAdvice } from './showProductsView.js';
 
 let currentPage = 1;
 let totalPages = 1;
+let currentFilter = "";
 
-export async function showProductsController(container) {
-  await loadAndRenderPage(container, currentPage);
+export async function showProductsController(container, filter = "") {
+  currentFilter = filter;
+  currentPage = 1; // reinicia la página al buscar
+  await loadAndRenderPage(container, currentPage, currentFilter);
   drawPagination(container);
 }
 
-async function loadAndRenderPage(container, page) {
+async function loadAndRenderPage(container, page, filter) {
   try {
-    const event = new CustomEvent("load-products-started");
-    container.dispatchEvent(event);
+    container.dispatchEvent(new CustomEvent("load-products-started"));
 
-    const { products, totalCount } = await getProducts(page);
+    const { products, totalCount } = await getProducts(page, 5, filter);
     drawProducts(products, container);
-
-    totalPages = Math.ceil(totalCount / 5); // ← 5 productos por página
+    totalPages = Math.ceil(totalCount / 5);
 
   } catch (error) {
-    const event = new CustomEvent("load-products-error", {
+    container.dispatchEvent(new CustomEvent("load-products-error", {
       detail: error.message
-    });
-    container.dispatchEvent(event);
+    }));
   } finally {
-    const event = new CustomEvent("load-products-finished");
-    container.dispatchEvent(event);
+    container.dispatchEvent(new CustomEvent("load-products-finished"));
   }
 }
 
@@ -41,14 +40,12 @@ function drawProducts(products, container) {
   products.forEach((product) => {
     const col = document.createElement("div");
     col.classList.add("col");
-
     col.innerHTML = buildProduct(product);
     container.appendChild(col);
   });
 }
 
 function drawPagination(container) {
-  // 🔄 Eliminar controles anteriores
   const oldPagination = document.querySelector(".pagination-wrapper");
   if (oldPagination) oldPagination.remove();
 
@@ -72,7 +69,7 @@ function drawPagination(container) {
   prevBtn.addEventListener("click", async () => {
     if (currentPage > 1) {
       currentPage--;
-      await loadAndRenderPage(container, currentPage);
+      await loadAndRenderPage(container, currentPage, currentFilter);
       drawPagination(container);
     }
   });
@@ -80,7 +77,7 @@ function drawPagination(container) {
   nextBtn.addEventListener("click", async () => {
     if (currentPage < totalPages) {
       currentPage++;
-      await loadAndRenderPage(container, currentPage);
+      await loadAndRenderPage(container, currentPage, currentFilter);
       drawPagination(container);
     }
   });

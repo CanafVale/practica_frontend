@@ -7,17 +7,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".products-container"); 
   const loader = document.querySelector(".loader");
   const notifications = document.querySelector(".notifications");
+  const searchInput = document.getElementById("search-input");
+  const headerHtml = await fetch("header.html").then(res => res.text());
+  document.getElementById("header-container").innerHTML = headerHtml;
 
   const { show, hide } = loaderController(loader);
   const { showNotification } = notificationsController(notifications);
+
+  let shouldNotify = true;
+  let currentSearch = "";
 
   container.addEventListener("load-products-started", () => {
     show();
   });
 
-  container.addEventListener("load-products-finished", () => {
+  container.addEventListener("load-products-finished", (event) => {
     hide();
-    showNotification("Ya he terminado de cargar productos");
+
+    const { detail: loadedProducts } = event;
+
+    if (shouldNotify) {
+      showNotification("Ya he terminado de cargar productos");
+      shouldNotify = false;
+    }
+
+ 
+    if (Array.isArray(loadedProducts) && loadedProducts.length === 0 && currentSearch !== "") {
+      showNotification("No se han encontrado productos que coincidan con tu búsqueda");
+    }
   });
 
   container.addEventListener("load-products-error", (event) => {
@@ -25,13 +42,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     showNotification(errorMessage);
   });
 
-  showProductsController(container);
 
- 
-  const headerHtml = await fetch("header.html").then(res => res.text());
-  document.getElementById("header-container").innerHTML = headerHtml;
+  searchInput.addEventListener("input", () => {
+    currentSearch = searchInput.value.trim();
+    showProductsController(container, currentSearch);
+  });
 
- 
+
+  showProductsController(container, currentSearch);
+
   const session = document.querySelector(".session");
   sessionController(session);
 });
