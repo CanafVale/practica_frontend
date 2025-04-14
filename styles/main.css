@@ -86,3 +86,11 @@
     display: block;
     width: auto;
   }
+
+
+  .logo-anapop {
+    max-height: 48px;   
+    height: auto;
+    width: auto;
+    display: block;
+  }
