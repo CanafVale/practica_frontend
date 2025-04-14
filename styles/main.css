@@ -1,4 +1,4 @@
-/* Variables de estilo */
+/* Style */
 :root {
     --color-primary: #64DBC8;
     --color-secondary: #3D9EF6;
@@ -10,7 +10,7 @@
     --button-text-color: #fff;
   }
   
-  /* Estilos globales - Mobile First */
+  /* Globa styles - Mobile First */
   body {
     margin: 0;
     padding: 1rem;
@@ -21,7 +21,7 @@
     background-color: var(--background-color);
   }
   
-  /* Botones al estilo Wallapop */
+  /* Buttons copying Wallapop web style */
   .button-wallapop {
     background-color: var(--color-primary);
     color: var(--button-text-color);
@@ -37,11 +37,36 @@
     background-color: var(--color-secondary);
   }
   
-
-
 .product-image {
     max-width: 200px;
     margin-top: 10px;
     border-radius: 4px;
     display: block;
+  }
+
+  /* Titles */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+
+/* Links */
+  a {
+    text-decoration: none;
+    color: var(--color-secondary);
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Bootstrap cards */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #fff;
+    height: 100%;
   }
