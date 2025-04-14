@@ -4,7 +4,7 @@
     --color-secondary: #3D9EF6;
     --text-color: #333;
     --background-color: #fff;
-    --font-family-base: 'Wallie', Helvetica, Arial, sans-serif;
+    --font-family-base: 'Open Sans', sans-serif;
     --font-size-base: 16px;
     --line-height-base: 1.5;
     --button-text-color: #fff;
@@ -38,10 +38,12 @@
   }
   
 .product-image {
-    max-width: 200px;
-    margin-top: 10px;
-    border-radius: 4px;
-    display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  max-height: 150px;
+  object-fit: contain;
   }
 
   /* Titles */
@@ -69,4 +71,18 @@
     padding: 1rem;
     background-color: #fff;
     height: 100%;
+  }
+
+  .card-title {
+    color: rgb(61, 210, 186);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .card-img-top {
+    max-height: 160px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    width: auto;
   }
