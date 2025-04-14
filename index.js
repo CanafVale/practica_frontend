@@ -23,19 +23,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   container.addEventListener("load-products-finished", (event) => {
     hide();
-
-    const { detail: loadedProducts } = event;
-
-    if (shouldNotify) {
+  
+    if (!event.detail?.silent) {
       showNotification("Ya he terminado de cargar productos");
-      shouldNotify = false;
-    }
-
- 
-    if (Array.isArray(loadedProducts) && loadedProducts.length === 0 && currentSearch !== "") {
-      showNotification("No se han encontrado productos que coincidan con tu búsqueda");
     }
   });
+  
 
   container.addEventListener("load-products-error", (event) => {
     const errorMessage = event.detail;

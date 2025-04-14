@@ -3,29 +3,37 @@ import { buildProduct, buildNoProductsAdvice } from './showProductsView.js';
 
 let currentPage = 1;
 let totalPages = 1;
-let currentFilter = "";
 
-export async function showProductsController(container, filter = "") {
-  currentFilter = filter;
-  currentPage = 1; // reinicia la página al buscar
-  await loadAndRenderPage(container, currentPage, currentFilter);
-  drawPagination(container);
+export async function showProductsController(container, search = "") {
+  await loadAndRenderPage(container, currentPage, search);
+  drawPagination(container, search);
 }
 
-async function loadAndRenderPage(container, page, filter) {
+async function loadAndRenderPage(container, page, search) {
   try {
-    container.dispatchEvent(new CustomEvent("load-products-started"));
+    const event = new CustomEvent("load-products-started");
+    container.dispatchEvent(event);
 
-    const { products, totalCount } = await getProducts(page, 5, filter);
+    const { products, totalCount } = await getProducts(page, 5, search);
     drawProducts(products, container);
+
     totalPages = Math.ceil(totalCount / 5);
 
+    // ✅ Notificamos solo si NO hay búsqueda
+    if (!search) {
+      const finishEvent = new CustomEvent("load-products-finished");
+      container.dispatchEvent(finishEvent);
+    } else {
+      // ocultamos loader si hay búsqueda, sin notificación
+      const finishEvent = new CustomEvent("load-products-finished", { detail: { silent: true } });
+      container.dispatchEvent(finishEvent);
+    }
+
   } catch (error) {
-    container.dispatchEvent(new CustomEvent("load-products-error", {
+    const errorEvent = new CustomEvent("load-products-error", {
       detail: error.message
-    }));
-  } finally {
-    container.dispatchEvent(new CustomEvent("load-products-finished"));
+    });
+    container.dispatchEvent(errorEvent);
   }
 }
 
@@ -45,9 +53,11 @@ function drawProducts(products, container) {
   });
 }
 
-function drawPagination(container) {
+function drawPagination(container, search) {
   const oldPagination = document.querySelector(".pagination-wrapper");
   if (oldPagination) oldPagination.remove();
+
+  if (totalPages <= 1) return;
 
   const paginationWrapper = document.createElement("div");
   paginationWrapper.classList.add("pagination-wrapper", "d-flex", "justify-content-center", "my-4", "gap-2");
@@ -69,16 +79,16 @@ function drawPagination(container) {
   prevBtn.addEventListener("click", async () => {
     if (currentPage > 1) {
       currentPage--;
-      await loadAndRenderPage(container, currentPage, currentFilter);
-      drawPagination(container);
+      await loadAndRenderPage(container, currentPage, search);
+      drawPagination(container, search);
     }
   });
 
   nextBtn.addEventListener("click", async () => {
     if (currentPage < totalPages) {
       currentPage++;
-      await loadAndRenderPage(container, currentPage, currentFilter);
-      drawPagination(container);
+      await loadAndRenderPage(container, currentPage, search);
+      drawPagination(container, search);
     }
   });
 
