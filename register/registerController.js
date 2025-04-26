@@ -16,13 +16,13 @@ export const registerController = (form) => {
     const passwordConfirm = passwordConfirmElement.value;
     const errors = []
 
-    // validar formato del email
+    // validate email format
     const emailRegExp = REGEXP.mail;
     if (!emailRegExp.test(email)) {
       errors.push('El formato del email es incorrecto')
     }
 
-    // comprobar que las contraseñas son iguales
+    // check passwords
     if (password !== passwordConfirm) {
       errors.push('Las contraseñas no son iguales')
     }
@@ -42,21 +42,22 @@ export const registerController = (form) => {
   const handleCreateUser = async (name, email, password, form) => {
     try {
       await createUser(name, email, password);
-      const event = new CustomEvent("register-ok", {
+      const okEvent = new CustomEvent("register-ok", {
         detail: {
           message: 'Te has registrado correctamente. Se te redigirá a la página principal para que puedas iniciar sesión',
           type: 'success'
         }
       });
-      form.dispatchEvent(event)
+      form.dispatchEvent(okEvent);
+
       setTimeout(() => {
-        window.location = '/'
-      }, 5000);
+        window.location = "login.html";
+      }, 3000);
     } catch (error) {
-      const event = new CustomEvent("register-error", {
-        detail: error
+      const errEvent = new CustomEvent("register-error", {
+        detail: error.message || "Error inesperado al registrar el usuario",
       });
-      form.dispatchEvent(event)
+      form.dispatchEvent(errEvent);
     }
   }
 }
