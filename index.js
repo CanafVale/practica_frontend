@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     hide();
   
     if (!event.detail?.silent) {
-      showNotification("Ya he terminado de cargar productos");
+      showNotification("Ya he terminado de cargar productos", "success");
     }
   });
   
 
   container.addEventListener("load-products-error", (event) => {
-    const errorMessage = event.detail;
-    showNotification(errorMessage);
+    hide();                             
+    showNotification(event.detail, "error"); 
   });
 
 
