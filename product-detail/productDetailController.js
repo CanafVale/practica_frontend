@@ -27,7 +27,7 @@ export const productDetailController = async (container, productId) => {
         });
       }
     } catch (error) {
-      // Si no hay sesión iniciada, no hacemos nada
+      
     }
   };
 

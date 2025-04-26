@@ -19,12 +19,12 @@ async function loadAndRenderPage(container, page, search) {
 
     totalPages = Math.ceil(totalCount / 5);
 
-    // ✅ Notificamos solo si NO hay búsqueda
+    
     if (!search) {
       const finishEvent = new CustomEvent("load-products-finished");
       container.dispatchEvent(finishEvent);
     } else {
-      // ocultamos loader si hay búsqueda, sin notificación
+    
       const finishEvent = new CustomEvent("load-products-finished", { detail: { silent: true } });
       container.dispatchEvent(finishEvent);
     }

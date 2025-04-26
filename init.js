@@ -1,4 +1,4 @@
-// init.js
+
 import { sessionController } from "./session/sessionController.js";
 
 export async function loadHeader() {

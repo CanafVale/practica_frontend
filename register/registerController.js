@@ -16,14 +16,12 @@ export const registerController = (form) => {
     const passwordConfirm = passwordConfirmElement.value;
     const errors = []
 
-    // validate email format
-    const emailRegExp = REGEXP.mail;
+        const emailRegExp = REGEXP.mail;
     if (!emailRegExp.test(email)) {
       errors.push('El formato del email es incorrecto')
     }
 
-    // check passwords
-    if (password !== passwordConfirm) {
+       if (password !== passwordConfirm) {
       errors.push('Las contraseñas no son iguales')
     }
 
