@@ -23,6 +23,24 @@
       "username": "pau@example.com",
       "password": "$2b$10$FsMIv3nCd.XaEelykJQRteBktrnvzGSgxBtolxiyv.a63VhnEIV2a",
       "id": 4
+    },
+    {
+      "name": "Lucas",
+      "username": "lucasmontesinos@gmail.com",
+      "password": "$2b$10$04NxvPGV730I5rL28jvy.udA5MuItoVEyxuZseiwbEQEBCVm8fYdq",
+      "id": 5
+    },
+    {
+      "name": "Mateo",
+      "username": "mateosanchez@gmail.com",
+      "password": "$2b$10$04NxvPGV730I5rL28jvy.udA5MuItoVEyxuZseiwbEQEBCVm8fYdq",
+      "id": 6
+    },
+    {
+      "name": "carlitos",
+      "username": "carlitos@gmail.com",
+      "password": "$2b$10$Sh.vYKiOMxguKXq0.JWXRetwI19NiYTN35Sg/3UXnlprcIRac2boO",
+      "id": 7
     }
   ],
   "tweets": [],
@@ -84,7 +102,7 @@
       "tags": [
         "deporte"
       ],
-      "image": "http://localhost:8000//file-1744564507203.jpg",
+      "image": "public/file-1744564507203.jpg",
       "userId": 1,
       "updatedAt": "2025-04-13T17:15:07.213Z",
       "id": 5
@@ -99,7 +117,7 @@
         "deporte",
         "moda"
       ],
-      "image": "http://localhost:8000//file-1744642900467.jpg",
+      "image": "public/file-1744642900467.jpg",
       "userId": 1,
       "updatedAt": "2025-04-14T15:01:40.476Z",
       "id": 6
@@ -138,7 +156,7 @@
       "tags": [
         "tecnologia"
       ],
-      "image": "http://localhost:8000//file-1744656377022.jpg",
+      "image": "public/file-1744656377022.jpg",
       "userId": 4,
       "updatedAt": "2025-04-14T18:46:17.030Z",
       "id": 9

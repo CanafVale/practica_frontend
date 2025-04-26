@@ -1,22 +1,16 @@
+// init.js
+import { sessionController } from "./session/sessionController.js";
 
-async function loadHeaderAndInitPage() {
-    const headerContainer = document.getElementById("header-container");
-    const response = await fetch("header.html");
-    const headerHtml = await response.text();
-    headerContainer.innerHTML = headerHtml;
+export async function loadHeader() {
   
-   
-    const searchParams = new URLSearchParams(window.location.search);
-    const productId = searchParams.get("id");
+  const headerContainer = document.getElementById("header-container");
+  const resp = await fetch("header.html");
+  headerContainer.innerHTML = await resp.text();
+
   
-    if (productId) {
-      const { productDetailController } = await import("./product-detail/productDetailController.js");
-      const productContainer = document.getElementById("product-detail");
-      productDetailController(productContainer, productId);
-    } else {
-      window.location = "/";
-    }
-  }
-  
-  document.addEventListener("DOMContentLoaded", loadHeaderAndInitPage);
-  
+  const sessionDiv = document.getElementById("session-container");
+  await sessionController(sessionDiv);
+}
+
+
+loadHeader();

@@ -38,13 +38,7 @@
       </div>
     </main>
 
+    <script type="module" src="./init.js"></script>
     <script type="module" src="./login.js"></script>
-    <script>
-      fetch("header.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("header-container").innerHTML = data;
-        });
-    </script>
   </body>
 </html>

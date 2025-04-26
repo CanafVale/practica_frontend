@@ -1,8 +1,17 @@
 export const buildProduct = (product) => {
   const date = new Date(product.updatedAt);
-  const imageUrl = product.image
-    ? new URL(product.image, "http://localhost:8000").href
-    : null;
+
+  let imageUrl = null;
+  if (product.image) {
+    
+    if (/^https?:\/\//i.test(product.image)) {
+      imageUrl = product.image;
+    } else {
+      
+      const fileName = product.image.replace(/^\/+/, "");
+      imageUrl = `public/${fileName}`;
+    }
+  }
 
   return `
     <a href="./product-detail.html?id=${product.id}" class="text-decoration-none text-dark">
